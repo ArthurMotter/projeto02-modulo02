@@ -8,12 +8,13 @@
     <title>Menu do Restaurante - Bootstrap</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
     <!-- Lib jQuery & jQuery Mask -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-    
+
     <script src="script.js" defer></script>
 </head>
 
@@ -22,42 +23,72 @@
     <!-- INÍCIO DA NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="#">Restaurante Menu</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Cardápio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Reservas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contato</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="#">Restaurante Menu</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contato</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <!-- FIM DA NAVBAR -->
 
     <main class="container bg-white rounded shadow-sm p-4 my-5">
 
-        <header class="text-center mb-4">
-            <img src="assets/home.jpg" alt="Banner com várias comidas" class="img-fluid rounded mb-3">
-            <h1>Menu - Faça A Sua Escolha</h1>
+        <!-- HEADER CAROUSEL -->
+        <header class="mb-4">
+            <div id="meuCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#meuCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#meuCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#meuCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./assets/vegetais.jpg" class="d-block w-100 rounded" alt="Prato principal em destaque">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./assets/carne.jpg" class="d-block w-100 rounded" alt="Saladas frescas">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./assets/massas.jpg" class="d-block w-100 rounded" alt="Sobremesas deliciosas">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#meuCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#meuCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <h1 class="text-center mt-4">Menu - Faça A Sua Escolha</h1>
         </header>
 
         <!-- SEÇÃO PRATO PRINCIPAL -->
         <section id="pratos-principais" class="mb-5">
             <h2 class="text-center">Prato Principal</h2>
             <p class="text-center text-muted">Todos os pratos acompanham arroz, feijão e a sobremesa do dia.</p>
-            
+
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- Item 1 -->
                 <div class="col">
@@ -72,7 +103,7 @@
                         </div>
                     </article>
                 </div>
-                <!-- Item 2 -->
+                <!-- Itens 2 -->
                 <div class="col">
                     <article class="item-card">
                         <img src="assets/coxa.jpg" alt="Coxa de frango crocante" class="img-fluid">
@@ -85,7 +116,7 @@
                         </div>
                     </article>
                 </div>
-                <!-- Item 3 -->
+                <!-- Itens 3 -->
                 <div class="col">
                     <article class="item-card">
                         <img src="assets/panela.jpg" alt="Carne de panela" class="img-fluid">
@@ -120,7 +151,7 @@
                         </div>
                     </article>
                 </div>
-                <!-- Item 2 -->
+                <!-- Itens 2 -->
                 <div class="col">
                     <article class="item-card">
                         <img src="assets/salad.jpg" alt="Salada verde" class="img-fluid">
@@ -133,7 +164,7 @@
                         </div>
                     </article>
                 </div>
-                <!-- Item 3 -->
+                <!-- Itens 3 -->
                 <div class="col">
                     <article class="item-card">
                         <img src="assets/torresmo.jpg" alt="Porção de torresmo" class="img-fluid">
@@ -164,8 +195,10 @@
         <section id="resumo-pedido"></section>
 
     </main>
-    
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

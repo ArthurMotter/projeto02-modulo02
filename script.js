@@ -4,23 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Aplicar a máscara ao campo de telefone
     $('#telefone').mask('(00) 00000-0000');
 
-    // --- TAREFA 4: LÓGICA DO BOTÃO CALCULAR ---
-    const itemCards = document.querySelectorAll('.item-card');
+    // Seleciona todos os cards de produtos
+    const itemCards = document.querySelectorAll('.card');
+
     itemCards.forEach(card => {
         const plusButton = card.querySelector('.btn-plus');
         const minusButton = card.querySelector('.btn-minus');
-        const quantitySpan = card.querySelector('.quantity');
-        let currentQuantity = parseInt(quantitySpan.textContent);
+        const quantityInput = card.querySelector('.quantity');
 
         plusButton.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantityInput.value);
             currentQuantity++;
-            quantitySpan.textContent = currentQuantity;
+            quantityInput.value = currentQuantity;
         });
 
         minusButton.addEventListener('click', () => {
+            let currentQuantity = parseInt(quantityInput.value);
             if (currentQuantity > 0) {
                 currentQuantity--;
-                quantitySpan.textContent = currentQuantity;
+                quantityInput.value = currentQuantity;
             }
         });
     });
@@ -29,17 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderSummaryContainer = document.getElementById('resumo-pedido');
     const customerNameInput = document.getElementById('nome');
 
+    // Cálculo do pedido
     calculateButton.addEventListener('click', () => {
-        // --- TAREFA 5: Lógica de Cálculo ---
         let orderItems = [];
         let totalPrice = 0;
 
         itemCards.forEach(card => {
-            const quantity = parseInt(card.querySelector('.quantity').textContent);
+            const quantity = parseInt(card.querySelector('.quantity').value);
 
             if (quantity > 0) {
-                const itemName = card.querySelector('h3').textContent;
-                const itemPriceString = card.querySelector('.price').textContent;
+                const itemName = card.querySelector('.card-title').textContent;
+                const itemPriceString = card.querySelector('.card-text').textContent;
                 const itemPrice = parseFloat(itemPriceString.replace('R$ ', '').replace(',', '.'));
                 const subtotal = quantity * itemPrice;
 
@@ -53,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // --- TAREFA 06: Exibição do Resumo ---
         orderSummaryContainer.innerHTML = '';
 
         if (orderItems.length === 0) {
@@ -69,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="order-details">
         `;
 
-        // Formatação dos preços
         orderItems.forEach(item => {
             const priceFormatted = `R$ ${item.price.toFixed(2).replace('.', ',')}`;
             const subtotalFormatted = `R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}`;

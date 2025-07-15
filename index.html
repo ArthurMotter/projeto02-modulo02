@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-g">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Menu do Restaurante</title>
+    
+    <!-- Lib jQuery & jQuery Mask -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <main class="container">
+
+        <header>
+            <img src="assets/home.jpg" alt="Banner com várias comidas" class="header-banner">
+            <h1>Menu - Faça A Sua Escolha</h1>
+        </header>
+
+        <!-- SEÇÃO PRATO PRINCIPAL -->
+        <section id="pratos-principais">
+            <h2>Prato Principal</h2>
+            <p>Todos os pratos acompanham arroz, feijão e a sobremesa do dia.</p>
+            <div class="items-grid">
+                <!-- Item 1 -->
+                <article class="item-card">
+                    <img src="assets/bife.jpg" alt="Bife com batata frita">
+                    <h3>Bife com batata</h3>
+                    <p class="price">R$ 30,00</p>
+                    <div class="quantity-selector">
+                        <button class="btn-minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="btn-plus">+</button>
+                    </div>
+                </article>
+                <!-- Item 2 -->
+                <article class="item-card">
+                    <img src="assets/coxa.jpg" alt="Coxa de frango crocante">
+                    <h3>Coxa de Frango Crocante</h3>
+                    <p class="price">R$ 25,00</p>
+                    <div class="quantity-selector">
+                        <button class="btn-minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="btn-plus">+</button>
+                    </div>
+                </article>
+                <!-- Item 3 -->
+                <article class="item-card">
+                    <img src="assets/panela.jpg" alt="Carne de panela">
+                    <h3>Carne de Panela</h3>
+                    <p class="price">R$ 22,00</p>
+                    <div class="quantity-selector">
+                        <button class="btn-minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="btn-plus">+</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEÇÃO ACOMPANHAMENTOS -->
+        <section id="acompanhamentos">
+            <h2>Acompanhamentos</h2>
+            <p>Porções para uma pessoa</p>
+            <div class="items-grid">
+                <!-- Item 1 -->
+                <article class="item-card">
+                    <img src="assets/farofa.jpg" alt="Porção de farofa">
+                    <h3>Farofa</h3>
+                    <p class="price">R$ 10,00</p>
+                    <div class="quantity-selector">
+                        <button class="btn-minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="btn-plus">+</button>
+                    </div>
+                </article>
+                <!-- Item 2 -->
+                <article class="item-card">
+                    <img src="assets/salad.jpg" alt="Salada verde">
+                    <h3>Salada</h3>
+                    <p class="price">R$ 8,00</p>
+                    <div class="quantity-selector">
+                        <button class="btn-minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="btn-plus">+</button>
+                    </div>
+                </article>
+                <!-- Item 3 -->
+                <article class="item-card">
+                    <img src="assets/torresmo.jpg" alt="Porção de torresmo">
+                    <h3>Torresmo</h3>
+                    <p class="price">R$ 12,00</p>
+                    <div class="quantity-selector">
+                        <button class="btn-minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="btn-plus">+</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DADOS PESSOAIS E CÁLCULO -->
+        <section id="dados-pessoais">
+            <h2>Dados Pessoais</h2>
+            <form>
+                <input type="text" id="nome" placeholder="Digite seu nome">
+                <input type="tel" id="telefone" placeholder="Digite seu telefone">
+                <input type="email" id="email" placeholder="Digite seu e-mail">
+            </form>
+            <button type="button" id="btn-calcular">Calcular</button>
+        </section>
+
+        <!-- SEÇÃO DE RESUMO DO PEDIDO (Dinâmico)-->
+        <section id="resumo-pedido"></section>
+
+    </main>
+</body>
+
+</html>

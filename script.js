@@ -4,34 +4,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Aplicar a máscara ao campo de telefone
     $('#telefone').mask('(00) 00000-0000');
 
-    // Seleciona todos os cards de produtos
-    const itemCards = document.querySelectorAll('.card');
+    // Instanciar o Modal do Bootstrap
+    const pedidoModal = new bootstrap.Modal('#pedidoModal');
+    
+    // Selecionar os elementos do Modal
+    const modalTitle = document.getElementById('pedidoModalLabel');
+    const modalBody = document.querySelector('#pedidoModal .modal-body');
 
+    // Lógica dos seletores de quantidade
+    const itemCards = document.querySelectorAll('.card');
     itemCards.forEach(card => {
         const plusButton = card.querySelector('.btn-plus');
         const minusButton = card.querySelector('.btn-minus');
         const quantityInput = card.querySelector('.quantity');
 
         plusButton.addEventListener('click', () => {
-            let currentQuantity = parseInt(quantityInput.value);
-            currentQuantity++;
-            quantityInput.value = currentQuantity;
+            quantityInput.value = parseInt(quantityInput.value) + 1;
         });
 
         minusButton.addEventListener('click', () => {
-            let currentQuantity = parseInt(quantityInput.value);
+            const currentQuantity = parseInt(quantityInput.value);
             if (currentQuantity > 0) {
-                currentQuantity--;
-                quantityInput.value = currentQuantity;
+                quantityInput.value = currentQuantity - 1;
             }
         });
     });
 
     const calculateButton = document.getElementById('btn-calcular');
-    const orderSummaryContainer = document.getElementById('resumo-pedido');
     const customerNameInput = document.getElementById('nome');
 
-    // Cálculo do pedido
+    // Lógica de cálculo e injeção dinâmica do pedido
     calculateButton.addEventListener('click', () => {
         let orderItems = [];
         let totalPrice = 0;
@@ -43,54 +45,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 const itemName = card.querySelector('.card-title').textContent;
                 const itemPriceString = card.querySelector('.card-text').textContent;
                 const itemPrice = parseFloat(itemPriceString.replace('R$ ', '').replace(',', '.'));
-                const subtotal = quantity * itemPrice;
-
+                
                 orderItems.push({
                     name: itemName,
                     price: itemPrice,
                     quantity: quantity,
                 });
 
-                totalPrice += subtotal;
+                totalPrice += quantity * itemPrice;
             }
         });
 
-        orderSummaryContainer.innerHTML = '';
-
+        // Verificar se há itens no pedido
         if (orderItems.length === 0) {
-            return;
+            modalTitle.textContent = 'Erro no Pedido';
+            modalBody.innerHTML = '<p class="text-danger">Você não selecionou nenhum item. Por favor, adicione produtos ao seu pedido antes de calcular.</p>';
+        } else {
+            const customerName = customerNameInput.value.trim() || 'Cliente';
+            modalTitle.textContent = `Resumo do Pedido de ${customerName}`;
+
+            let summaryHTML = `
+                <p>Seguem os dados do seu pedido:</p>
+                <hr>
+            `;
+
+            orderItems.forEach(item => {
+                const priceFormatted = `R$ ${item.price.toFixed(2).replace('.', ',')}`;
+                const subtotalFormatted = `R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}`;
+                summaryHTML += `
+                    <p>
+                        <strong>Prato:</strong> ${item.name}<br>
+                        <em>(Preço unitário: ${priceFormatted} - Quantidade: ${item.quantity})</em><br>
+                        <strong>Subtotal: ${subtotalFormatted}</strong>
+                    </p>
+                `;
+            });
+
+            const totalPriceFormatted = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
+            summaryHTML += `<hr><p class="fw-bold fs-5">Preço final: ${totalPriceFormatted}</p>`;
+            
+            modalBody.innerHTML = summaryHTML;
         }
 
-        const customerName = customerNameInput.value.trim() || 'Prezado(a) Cliente';
-
-        let summaryHTML = `
-            <h3>Caro(a) ${customerName},</h3>
-            <p>Seguem os dados do seu pedido.</p>
-            <p><strong>O seu pedido é:</strong></p>
-            <div class="order-details">
-        `;
-
-        orderItems.forEach(item => {
-            const priceFormatted = `R$ ${item.price.toFixed(2).replace('.', ',')}`;
-            const subtotalFormatted = `R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}`;
-
-            summaryHTML += `
-                <p>
-                    • Prato: ${item.name} - 
-                    Preço unitário: ${priceFormatted} - 
-                    Quantidade: ${item.quantity} - 
-                    Total: ${subtotalFormatted}
-                </p>
-            `;
-        });
-
-        const totalPriceFormatted = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
-
-        summaryHTML += `
-            </div>
-            <h3 class="final-price">Preço final ${totalPriceFormatted}</h3>
-        `;
-
-        orderSummaryContainer.innerHTML = summaryHTML;
+        pedidoModal.show();
     });
 });

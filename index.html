@@ -63,7 +63,8 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="./assets/vegetais.jpg" class="d-block w-100 rounded" alt="Prato principal em destaque">
+                        <img src="./assets/vegetais.jpg" class="d-block w-100 rounded"
+                            alt="Prato principal em destaque">
                     </div>
                     <div class="carousel-item">
                         <img src="./assets/carne.jpg" class="d-block w-100 rounded" alt="Saladas frescas">
@@ -88,7 +89,7 @@
         <section id="pratos-principais" class="mb-5">
             <h2 class="text-center">Prato Principal</h2>
             <p class="text-center text-muted">Todos os pratos acompanham arroz, feijão e a sobremesa do dia.</p>
-            
+
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                 <!-- Card Item 1 -->
                 <div class="col">
@@ -107,12 +108,12 @@
                 </div>
                 <!-- Card Item 2 -->
                 <div class="col">
-                     <div class="card h-100">
+                    <div class="card h-100">
                         <img src="assets/coxa.jpg" class="card-img-top" alt="Coxa de frango crocante">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Coxa de Frango Crocante</h5>
                             <p class="card-text fw-bold text-success">R$ 25,00</p>
-                             <div class="input-group mt-auto">
+                            <div class="input-group mt-auto">
                                 <button class="btn btn-outline-secondary btn-minus" type="button">-</button>
                                 <input type="text" class="form-control text-center quantity" value="0" readonly>
                                 <button class="btn btn-outline-secondary btn-plus" type="button">+</button>
@@ -192,34 +193,44 @@
             </div>
         </section>
 
-        <!-- SEÇÃO DADOS PESSOAIS E CÁLCULO -->
+        <!-- FORMULÁRIO DE DADOS PESSOAIS -->
         <section id="dados-pessoais" class="mb-5">
             <h2 class="text-center">Dados Pessoais</h2>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <form>
-                        <div class="mb-3">
-                            <label for="nome" class="form-label">Nome Completo:</label>
-                            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome completo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefone" class="form-label">Telefone:</label>
-                            <input type="tel" class="form-control" id="telefone" placeholder="(00) 00000-0000">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">E-mail:</label>
-                            <input type="email" class="form-control" id="email" placeholder="seu.email@exemplo.com">
-                        </div>
+                        <div class="mb-3"><label for="nome" class="form-label">Nome Completo:</label><input type="text"
+                                class="form-control" id="nome" placeholder="Digite seu nome completo"></div>
+                        <div class="mb-3"><label for="telefone" class="form-label">Telefone:</label><input type="tel"
+                                class="form-control" id="telefone" placeholder="(00) 00000-0000"></div>
+                        <div class="mb-3"><label for="email" class="form-label">E-mail:</label><input type="email"
+                                class="form-control" id="email" placeholder="seu.email@exemplo.com"></div>
                         <button type="button" id="btn-calcular" class="btn btn-primary w-100 fw-bold">CALCULAR</button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <!-- SEÇÃO DE RESUMO DO PEDIDO -->
-        <section id="resumo-pedido"></section>
-
     </main>
+
+    <!-- INÍCIO DO MODAL -->
+    <div class="modal fade" id="pedidoModal" tabindex="-1" aria-labelledby="pedidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pedidoModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Conteúdo do modal será injetado dinamicamente aqui -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DO MODAL -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"

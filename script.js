@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Instanciar o Modal do Bootstrap
     const pedidoModal = new bootstrap.Modal('#pedidoModal');
-    
+
     // Selecionar os elementos do Modal
     const modalTitle = document.getElementById('pedidoModalLabel');
     const modalBody = document.querySelector('#pedidoModal .modal-body');
@@ -16,16 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
     itemCards.forEach(card => {
         const plusButton = card.querySelector('.btn-plus');
         const minusButton = card.querySelector('.btn-minus');
-        const quantityInput = card.querySelector('.quantity');
+        const quantitySpan = card.querySelector('.quantity');
 
         plusButton.addEventListener('click', () => {
-            quantityInput.value = parseInt(quantityInput.value) + 1;
+            let currentQuantity = parseInt(quantitySpan.textContent);
+            currentQuantity++;
+            quantitySpan.textContent = currentQuantity;
         });
 
         minusButton.addEventListener('click', () => {
-            const currentQuantity = parseInt(quantityInput.value);
+            let currentQuantity = parseInt(quantitySpan.textContent);
             if (currentQuantity > 0) {
-                quantityInput.value = currentQuantity - 1;
+                currentQuantity--;
+                quantitySpan.textContent = currentQuantity;
             }
         });
     });
@@ -39,13 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalPrice = 0;
 
         itemCards.forEach(card => {
-            const quantity = parseInt(card.querySelector('.quantity').value);
+            const quantity = parseInt(card.querySelector('.quantity').textContent);
 
             if (quantity > 0) {
                 const itemName = card.querySelector('.card-title').textContent;
                 const itemPriceString = card.querySelector('.card-text').textContent;
                 const itemPrice = parseFloat(itemPriceString.replace('R$ ', '').replace(',', '.'));
-                
+
                 orderItems.push({
                     name: itemName,
                     price: itemPrice,
@@ -83,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const totalPriceFormatted = `R$ ${totalPrice.toFixed(2).replace('.', ',')}`;
             summaryHTML += `<hr><p class="fw-bold fs-5">Preço final: ${totalPriceFormatted}</p>`;
-            
+
             modalBody.innerHTML = summaryHTML;
         }
 
